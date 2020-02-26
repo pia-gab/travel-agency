@@ -1,21 +1,24 @@
 import React from 'react';
+import OrderSummary from '../../features/OrderSummary/OrderSummary';
+import { Row, Col } from 'react-flexbox-grid';
+import styles from './OrderForm.scss';
 import PropTypes from 'prop-types';
-import OrderOption from '../OrderSummary/OrderSummary';
-import OrderSummary from '../OrderOption/OrderOption';
-import {Row, Col} from 'react-flexbox-grid';
+import OrderOption from '../../features/OrderOption/OrderOption';
 import pricing from '../../../data/pricing.json';
 import settings from '../../../data/settings';
 import { calculateTotal } from '../../../utils/calculateTotal';
 import { formatPrice } from '../../../utils/formatPrice';
 import Button from '../../common/Button/Button';
 
-
-const sendOrder = (options, tripCost) => {
+const sendOrder = (options, tripCost, tripId, tripName, countryCode) => {
   const totalCost = formatPrice(calculateTotal(tripCost, options));
 
   const payload = {
     ...options,
     totalCost,
+    tripId,
+    tripName,
+    countryCode,
   };
 
   const url = settings.db.url + '/' + settings.db.endpoint.orders;
@@ -37,25 +40,30 @@ const sendOrder = (options, tripCost) => {
     });
 };
 
-const OrderForm = ({tripCost, options, setOrderOption} )=> (
-  <Row>
-    {pricing.map(option => (
-      <Col key={option.id} md={4}>
-        <OrderOption {...option} currentValue ={options[option.id]} setOrderOption={setOrderOption}/>
+const OrderForm = ({options, tripCost, setOrderOption, tripName, tripId, countryCode}) => {
+  const isEnabled = options.name.length >= 1 && options.contact.length >= 1;
+  return (
+    <Row className={styles.component}>
+      {pricing.map(option => (
+        <Col key={option.id} md={4}>
+          <OrderOption {...option} currentValue={options[option.id]} setOrderOption={setOrderOption} />
+        </Col>
+      ))}
+      <Col xs={12}>
+        <OrderSummary cost={tripCost} options={options}/>
+        <Button disabled={!isEnabled} onClick={() => sendOrder(options, tripCost, tripId, tripName, countryCode)}>Order now!</Button>
       </Col>
-    ))}
-    <Col xs={12}>
-      <OrderSummary tripCost={tripCost} options={options}/>
-    </Col>
-    <Button onClick={() => sendOrder(options, tripCost)}>Order now!</Button>
-    {console.log(Button)};
-  </Row>
-);
+    </Row>
+  );
+};
 
 OrderForm.propTypes = {
-  tripCost: PropTypes.string,
+  tripCost: PropTypes.node,
   options: PropTypes.object,
   setOrderOption: PropTypes.func,
+  tripId: PropTypes.string,
+  tripName: PropTypes.string,
+  countryCode: PropTypes.any,
 };
 
 export default OrderForm;

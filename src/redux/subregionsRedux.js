@@ -9,13 +9,8 @@ export const getSubregion = ({subregions}, subregionCode) => subregions[subregio
 // action name creator
 const reducerName = 'subregions';
 const createActionName = name => `app/${reducerName}/${name}`;
-
 // action types
-
-
 // action creators
-
-
 // reducer
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {

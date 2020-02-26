@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import TripListOptions from './TripListOptions';
+import TripListOptions from './TripListOptions.js';
 import {getAllTags} from '../../../redux/tagsRedux';
 import {getAllFilters, changeSearchPhrase, addTag, removeTag, changeDuration} from '../../../redux/filtersRedux';
 

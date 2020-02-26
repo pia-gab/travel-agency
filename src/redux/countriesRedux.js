@@ -7,7 +7,7 @@ export const getCountryByCode = ({countries}, countryCode) => countries[countryC
 
 /*
 // action name creator
-const reducerName = 'countries';
+const reducerName = 'tags';
 const createActionName = name => `app/${reducerName}/${name}`;
 
 // action types

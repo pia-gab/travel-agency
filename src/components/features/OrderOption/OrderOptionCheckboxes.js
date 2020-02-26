@@ -27,6 +27,7 @@ const OrderOptionCheckboxes = ({values, currentValue, setOptionValue}) => (
       </label>
     ))}
   </div>
+
 );
 
 OrderOptionCheckboxes.propTypes = {

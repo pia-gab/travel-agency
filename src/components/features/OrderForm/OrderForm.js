@@ -41,7 +41,7 @@ const sendOrder = (options, tripCost, tripId, tripName, countryCode) => {
 };
 
 const OrderForm = ({options, tripCost, setOrderOption, tripName, tripId, countryCode}) => {
-  const isEnabled = options.name.length >= 1 && options.contact.length >= 1;
+  const isEnabled = options.name.length >= 5 && options.contact.length >= 9;
   return (
     <Row className={styles.component}>
       {pricing.map(option => (

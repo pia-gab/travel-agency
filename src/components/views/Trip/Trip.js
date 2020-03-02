@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import HTMLParser from 'react-html-parser';
 
+import { discountPrice } from '../../../utils/discountPrice';
+import { formatPrice } from '../../../utils/formatPrice';
+
 import NotFound from '../NotFound/NotFound';
 import Section from '../../layout/Section/Section';
 import PageTitle from '../../common/PageTitle/PageTitle';
@@ -16,6 +19,7 @@ import styles from './Trip.scss';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 
 const Trip = ({error, name, image, cost, days, description, country, intro}) => {
+  const timeUTC = new Date(new Date().toUTCString().substr(0, 25));
   if(error) return <NotFound />;
   else return (
     <Section>
@@ -34,7 +38,9 @@ const Trip = ({error, name, image, cost, days, description, country, intro}) => 
               </div>
               <List variant='light'>
                 <ListItem title={`<strong>Duration:</strong> ${days} days`} icon='calendar-alt' />
-                <ListItem title={`<strong>Price:</strong> from ${cost}`} icon='money-bill-wave' />
+                <ListItem title={timeUTC.getHours() == 12 ? (
+                  `<strong>HAPPY HOUR!</strong> Price from ${formatPrice(discountPrice(cost, 20))} <br><small>Standard price from ${cost}</small>`
+                ) : (`Price from ${cost}`)} icon='money-bill-wave'/>
               </List>
             </Col>
           </Row>

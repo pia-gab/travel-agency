@@ -8,7 +8,7 @@ describe('Compo TripSumm', () => {
     const component = shallow(<TripSummary id={id} />);
     const urlLink = component.find('.link').prop('to');
     expect(urlLink).toEqual(`/trip/${id}`);
-    console.log(component.debug());
+    ///console.log(component.debug());
   });
   it ('should check src and alt in images', () => {
     const expectedImg = 'image.jpg';
@@ -17,7 +17,7 @@ describe('Compo TripSumm', () => {
 
     expect(component.find('img').prop('src')).toEqual(expectedImg);
     expect(component.find('img').prop('alt')).toEqual(expectedAlt);
-    console.log(component.debug());
+    //console.log(component.debug());
   });
   it ('should render name cost and days', () => {
     const expectedName = 'name';
@@ -27,7 +27,7 @@ describe('Compo TripSumm', () => {
     const component = shallow(<TripSummary name={expectedName} cost={expectedCost} days={expectedDays}/>);
 
     expect(component).toBeTruthy();
-    console.log(component.debug());
+    //console.log(component.debug());
   });
   it('should throw err wout req props', ()=>{
     expect(() => shallow(<TripSummary />)).toThrow();
@@ -40,7 +40,7 @@ describe('Compo TripSumm', () => {
     expect(component.find('.tags span').at(0).text()).toEqual(expectedArray[0]);
     expect(component.find('.tags span').at(1).text()).toEqual(expectedArray[1]);
     expect(component.find('.tags span').at(2).text()).toEqual(expectedArray[2]);
-    console.log(component.debug());
+    //console.log(component.debug());
   });
 
   it('should not render div if empty array', () => {
@@ -48,6 +48,6 @@ describe('Compo TripSumm', () => {
     const component = shallow(<TripSummary tags={expectedArr} />);
 
     expect(component).find('.tags').toEqual({});
-    console.log(component.debug());
+    //console.log(component.debug());
   });
 });

@@ -134,19 +134,17 @@ for(let type in optionTypes){
         it ('should run', () => {
           renderedSubcomponent.find('input').simulate('change', {currentTarget: {value: testValueNumber}});
           expect(mockSetOrderOption).toBeCalledTimes(1);
-          expect(mockSetOrderOption).toBeCalledWith({[mockProps.id]: testValue});
+          expect(mockSetOrderOption).toBeCalledWith({[mockProps.id]: testValueNumber});
         });
         break;
       }
       case 'checkboxes': {
         it ('rendr div checkbs', () => {
-          const checkDiv = subcomponent.find('.checkboxes');
+          const checkDiv = renderedSubcomponent.find('.checkboxes');
           expect(checkDiv.length).toBe(1);
         });
         it ('should run', () => {
-          const checkboxes = renderedSubcomponent.find('input').at(1).simulate('change', {currentTarget: {checked: true}});
-
-          expect(checkboxes.prop('value')).toEqual(testValue);
+          renderedSubcomponent.find('input').at(1).simulate('change', {currentTarget: {checked: true}});
           expect(mockSetOrderOption).toBeCalledTimes(1);
           expect(mockSetOrderOption).toBeCalledWith({[mockProps.id]: [mockProps.currentValue, testValue]});
         });

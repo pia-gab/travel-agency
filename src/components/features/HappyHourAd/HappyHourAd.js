@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { formatTime } from '../../../utils/formatTime';
 
 
-class HappyHourAdd extends React.Component {
+class HappyHourAd extends React.Component {
   constructor(){
     super();
     setInterval(() =>
@@ -39,10 +39,10 @@ class HappyHourAdd extends React.Component {
     return (
       <div className={styles.component}>
         <h3 className={styles.title}>{title}</h3>
-        <p className={styles.promoDescription}>{countDown > 82800 ? descrpt: formatTime(countDown)} </p>
+        <p className={styles.promoDescription}>{countDown > 82800 ? descrpt: formatTime(countDown)}</p>
       </div>
     );
   }
 }
 
-export default HappyHourAdd;
+export default HappyHourAd;

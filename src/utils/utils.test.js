@@ -36,5 +36,8 @@ describe('utils', () => {
     it('should return null if price is null', () => {
       expect(discountPrice('')).toBe(null);
     });
+    it('should return 20% lower price', () => {
+      expect(discountPrice(100, 20)).toBe('80.0');
+    });
   });
 });

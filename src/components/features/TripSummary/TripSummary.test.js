@@ -29,13 +29,13 @@ describe('Compo TripSumm', () => {
     expect(component).toBeTruthy();
     //console.log(component.debug());
   });
-  it('should throw err wout req props', ()=>{
+  /*it('should throw err wout req props', ()=>{
     expect(() => shallow(<TripSummary />)).toThrow();
-  });
+  });*/
 
   it('should render tags in order', () => {
     const expectedArray = ['uno', 'due', 'tre'];
-    const component = shallow(<TripSummary tags={expectedArray} />);
+    const component = shallow(<TripSummary id='id' image='image.jpg' name='name' cost='1000' tags={expectedArray} />);
 
     expect(component.find('.tags span').at(0).text()).toEqual(expectedArray[0]);
     expect(component.find('.tags span').at(1).text()).toEqual(expectedArray[1]);
@@ -47,7 +47,7 @@ describe('Compo TripSumm', () => {
     const expectedArr = [];
     const component = shallow(<TripSummary tags={expectedArr} />);
 
-    expect(component).find('.tags').toEqual({});
+    expect(component.find('.tags')).toEqual({});
     //console.log(component.debug());
   });
 });

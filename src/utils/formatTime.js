@@ -9,7 +9,7 @@ export const formatTime = (param) => {
     mins = mins.padStart(2, '0');
 
     let hrs = Math.floor(param/3600) + '';
-    mins = mins.padStart(2, '0');
+    hrs = hrs.padStart(2, '0');
 
     return hrs + ':' + mins + ':' + sec;
   }

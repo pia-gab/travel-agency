@@ -32,7 +32,6 @@ describe('Compo HappyHourAd', () => {
     const component = shallow(<HappyHourAd {...mockProps} />);
 
     expect(component.find(select.title).text()).toEqual(mockProps.title);
-    expect(component.find(select.promDescrpt).text()).toEqual(mockProps.descrpt);
   });
 });
 
@@ -82,23 +81,21 @@ const checkDescriptionAfterTime = (time, delaySeconds, expectedDescription) => {
     jest.useRealTimers();
   });
 };
-describe('Component HappyHourAdd with mocked Date', () => {
+describe('Component HappyHourAd description should be formattedTime', () => {
   checkDescriptionAtTime('11:57:58', '122');
   checkDescriptionAtTime('11:59:59', '1');
   checkDescriptionAtTime('13:00:00', 23 * 60 * 60 + '');
 });
-
-describe('Component HappyHourAd with mocked Date and delay', () => {
+describe('Component HappyHourAd description should be formattedTime after a delay', () => {
   checkDescriptionAfterTime('11:57:58', 2, '120');
   checkDescriptionAfterTime('11:59:58', 1, '1');
   checkDescriptionAfterTime('13:00:00', 60 * 60, 22 * 60 * 60 + '');
 });
 
-describe('Component HappyHourAdd with mocked Date', () => {
+describe('Component HappyHourAdd description should be from props', () => {
   checkDescriptionAtTime('12:00:00', mockProps.descrpt);
   checkDescriptionAtTime('12:59:59', mockProps.descrpt);
-  checkDescriptionAtTime('13:00:00', mockProps.descrpt);
 });
-describe('Component HappyHourAd with mocked Date and delay', () => {
-  checkDescriptionAfterTime('11:57:58', 4, mockProps.descrpt);
+describe('Component HappyHourAd description should be from props after a delay', () => {
+  checkDescriptionAfterTime('11:57:58', 122, mockProps.descrpt);
 });
